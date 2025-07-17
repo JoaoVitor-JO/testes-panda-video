@@ -1,0 +1,778 @@
+{
+	"info": {
+		"_postman_id": "3bb14a27-2dfb-456f-8d1d-ae552d530679",
+		"name": "Folder_Panda_Video",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44150247"
+	},
+	"item": [
+		{
+			"name": "get_requests",
+			"item": [
+				{
+					"name": "List folder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{API_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_Base}}folders",
+							"host": [
+								"{{URL_Base}}folders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "post_requests",
+			"item": [
+				{
+					"name": "Create folder",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let title = pm.collectionVariables.get(\"Title\");\r",
+									"\r",
+									"pm.test(\"Status 201\",function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Create folder and check name\", function () {\r",
+									"    pm.expect(pm.response.json().name).to.eql(title)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{API_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{Title}}\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_Base}}folders",
+							"host": [
+								"{{URL_Base}}folders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create folder with small title",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 400\",function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"API response is null\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\")\r",
+									"   \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{API_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{Title_small}}\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_Base}}folders",
+							"host": [
+								"{{URL_Base}}folders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create folder with large title",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 400\",function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"API response is null\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql(\"\")\r",
+									"   \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{API_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{Title_large}}\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_Base}}folders",
+							"host": [
+								"{{URL_Base}}folders"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "put_requests",
+			"item": [
+				{
+					"name": "Update_folder_properties",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"https://api-v2.pandavideo.com.br/folders\",\r",
+									"    method: \"POST\",\r",
+									"    header: {\r",
+									"        \"Authorization\": pm.environment.get(\"API_key\"),\r",
+									"        \"Content-Type\": \"application/json\"\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: \"raw\",\r",
+									"        raw: JSON.stringify({\r",
+									"            name: \"Test put\" \r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.error(\"POST error:\", err);\r",
+									"    } else {\r",
+									"        const data = res.json();\r",
+									"        console.log(\"POST response:\", data);\r",
+									"\r",
+									"        const id_created = data.id;\r",
+									"\r",
+									"        pm.collectionVariables.set(\"folder_id_put\", id_created);\r",
+									"\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const new_title = pm.collectionVariables.get(\"new_name\")\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Changed name confirm\", function () {\r",
+									"    pm.expect(pm.response.json().name).to.eql(new_title);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{API_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{new_name}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_Base}}folders/{{folder_id_put}}",
+							"host": [
+								"{{URL_Base}}folders"
+							],
+							"path": [
+								"{{folder_id_put}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update folder properties with small title",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"https://api-v2.pandavideo.com.br/folders\",\r",
+									"    method: \"POST\",\r",
+									"    header: {\r",
+									"        \"Authorization\": pm.environment.get(\"API_key\"),\r",
+									"        \"Content-Type\": \"application/json\"\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: \"raw\",\r",
+									"        raw: JSON.stringify({\r",
+									"            name: \"Test put small\" \r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.error(\"POST error:\", err);\r",
+									"    } else {\r",
+									"        const data = res.json();\r",
+									"        console.log(\"POST response:\", data);\r",
+									"\r",
+									"        const id_created = data.id;\r",
+									"\r",
+									"        pm.collectionVariables.set(\"folder_id_put_small\", id_created);\r",
+									"\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const new_title = pm.collectionVariables.get(\"new_name_small\")\r",
+									"\r",
+									"pm.test(\"Status 400\",function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The title has not been Changed \", function () {\r",
+									"    pm.expect(pm.response.json().name).to.not.eql(new_title)\r",
+									"   \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{API_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{new_name_small}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_Base}}folders/{{folder_id_put_small}}",
+							"host": [
+								"{{URL_Base}}folders"
+							],
+							"path": [
+								"{{folder_id_put_small}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update folder properties with large title",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"https://api-v2.pandavideo.com.br/folders\",\r",
+									"    method: \"POST\",\r",
+									"    header: {\r",
+									"        \"Authorization\": pm.environment.get(\"API_key\"),\r",
+									"        \"Content-Type\": \"application/json\"\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: \"raw\",\r",
+									"        raw: JSON.stringify({\r",
+									"            name: \"Test put large\" \r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.error(\"POST error:\", err);\r",
+									"    } else {\r",
+									"        const data = res.json();\r",
+									"        console.log(\"POST response:\", data);\r",
+									"\r",
+									"        const id_created = data.id;\r",
+									"\r",
+									"        pm.collectionVariables.set(\"folder_id_put_large\", id_created);\r",
+									"\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const new_title = pm.collectionVariables.get(\"new_name_large\")\r",
+									"\r",
+									"pm.test(\"Status 400\",function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The title has not been Changed \", function () {\r",
+									"    pm.expect(pm.response.json().name).to.not.eql(new_title)\r",
+									"   \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{API_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{new_name_large}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_Base}}folders/{{folder_id_put_large}}",
+							"host": [
+								"{{URL_Base}}folders"
+							],
+							"path": [
+								"{{folder_id_put_large}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "delete_requests",
+			"item": [
+				{
+					"name": "delete_folder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const id_dell = pm.environment.get(\"folder_id_dell\");\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"    url: \"https://api-v2.pandavideo.com.br/folders\",\r",
+									"    method: \"GET\",\r",
+									"    header: {\r",
+									"        \"Authorization\": pm.environment.get(\"API_key\"),\r",
+									"        \"Content-Type\": \"application/json\"\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.error(\"GET error:\", err);\r",
+									"    } else {\r",
+									"        const data = res.json();\r",
+									"        console.log(\"GET response:\", data);\r",
+									"\r",
+									"        const list = data.folders || [];\r",
+									"\r",
+									"        const exists = list.some(vari => vari.id === id_dell);\r",
+									"\r",
+									"        pm.test(\"Status code is 200\", function () {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"\r",
+									"        pm.test(\"Deleted ID must not exists\", function () {\r",
+									"            pm.expect(exists).to.eql(false);\r",
+									"        });\r",
+									"\r",
+									"        pm.test(\"Response time is less than 500ms\", function () {\r",
+									"            pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"        });\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"https://api-v2.pandavideo.com.br/folders\",\r",
+									"    method: \"POST\",\r",
+									"    header: {\r",
+									"        \"Authorization\": pm.environment.get(\"API_key\"),\r",
+									"        \"Content-Type\": \"application/json\"\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: \"raw\",\r",
+									"        raw: JSON.stringify({\r",
+									"            name: \"Test delete\" \r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.error(\"POST error:\", err);\r",
+									"    } else {\r",
+									"        const data = res.json();\r",
+									"        console.log(\"POST response:\", data);\r",
+									"\r",
+									"        const id_created = data.id;\r",
+									"\r",
+									"        pm.collectionVariables.set(\"folder_id_dell\", id_created);\r",
+									"\r",
+									"        console.log(\"ID criado:\", id_created);\r",
+									"        console.log(\"Variável folder_id_dell:\", pm.collectionVariables.get(\"folder_id_dell\"));\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{API_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_Base}}folders/{{folder_id_dell}}",
+							"host": [
+								"{{URL_Base}}folders"
+							],
+							"path": [
+								"{{folder_id_dell}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "new_name",
+			"value": "novo teste name",
+			"type": "default"
+		},
+		{
+			"key": "folder_id",
+			"value": "815ed11b-f725-4560-96a2-af6d53aa8992",
+			"type": "default"
+		},
+		{
+			"key": "folder_id_dell",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "id_created",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "Title",
+			"value": "titulo teste",
+			"type": "default"
+		},
+		{
+			"key": "Title_large",
+			"value": "0123456789012345678901234567890123456789012345678901",
+			"type": "default"
+		},
+		{
+			"key": "Title_small",
+			"value": "as",
+			"type": "default"
+		},
+		{
+			"key": "new_name_small",
+			"value": "as",
+			"type": "default"
+		},
+		{
+			"key": "new_name_large",
+			"value": "0123456789012345678901234567890123456789012345678901",
+			"type": "default"
+		},
+		{
+			"key": "folder_id_put",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "folder_id_put_small",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "folder_id_put_large",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
